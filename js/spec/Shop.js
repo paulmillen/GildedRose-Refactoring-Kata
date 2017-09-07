@@ -39,7 +39,7 @@ describe('Shop', () => {
       });
     });
 
-    describe('Aged Brie', () => {
+    describe('with Aged Brie', () => {
 
       const sellIn = 1
       const quality = 47
@@ -62,7 +62,7 @@ describe('Shop', () => {
       });
     });
 
-    describe('Sulfuras', () => {
+    describe('with Sulfuras', () => {
 
       const sellIn = 1
       const quality = 1
@@ -73,15 +73,9 @@ describe('Shop', () => {
         gildedRose.updateQuality();
         expect(gildedRose.items[0].quality).toEqual(quality)
       });
-
-      it('sellIn unchanged by updateQuality', () => {
-        gildedRose.updateQuality();
-        gildedRose.updateQuality();
-        expect(gildedRose.items[0].sellIn).toEqual(sellIn)
-      });
     });
 
-    describe('Backstage Passes', () => {
+    describe('with Backstage Passes', () => {
 
       it('quality to increase by 1 with sellIn over 10', () => {
         const sellIn = 11
@@ -139,7 +133,7 @@ describe('Shop', () => {
       });
     });
 
-    describe('Conjured Items', () => {
+    describe('with Conjured Items', () => {
 
       const sellIn = 1
       const quality = 6
