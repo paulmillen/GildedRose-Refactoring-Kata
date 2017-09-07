@@ -5,8 +5,8 @@ class Shop {
 
   updateQuality() {
     for (let item of this.items) {
-      if (item.name.includes('Aged Brie')) return;
       if (item.name.includes('Sulfuras')) return;
+      if (item.name.includes('Aged Brie')) { this.updateAgedBrie(item); return }
       if (item.name.includes('Backstage')) return;
       if (item.name.includes('Conjuered')) return;
       this.updateBasicItem(item);
@@ -16,9 +16,19 @@ class Shop {
   updateBasicItem(item) {
     if (item.quality > 0) {
       if (item.sellIn > 0) {
-        item.sellIn -= 1, item.quality -=1
+        item.sellIn -= 1, item.quality -= 1;
       } else {
-        item.quality -= 2
+        item.quality -= 2;
+      };
+    };
+  };
+
+  updateAgedBrie(item) {
+    if (item.quality < 50) {
+      if (item.sellIn > 0) {
+        item.sellIn -= 1, item.quality += 1;
+      } else {
+        item.quality += 2;
       };
     };
   };

@@ -41,19 +41,24 @@ describe('Shop', () => {
 
     describe('Aged Brie', () => {
 
-      const sellIn = 0
-      const quality = 49
+      const sellIn = 1
+      const quality = 47
       const agedBrie = new Item("Aged Brie", sellIn, quality)
       const gildedRose = new Shop([agedBrie]);
 
-      it('increases its value by 1 when it gets older', () => {
+      it('increases its value by 1 when when sellIn is greater than 0', () => {
         gildedRose.updateQuality();
         expect(gildedRose.items[0].quality).toEqual(quality + 1)
       });
 
+      it('increases its value by 2 when its sellIn is below 0', () => {
+        gildedRose.updateQuality();
+        expect(gildedRose.items[0].quality).toEqual(quality + 3)
+      });
+
       it('cannot have a quality higher than 50', () => {
         gildedRose.updateQuality();
-        expect(gildedRose.items[0].quality).toEqual(quality + 1)
+        expect(gildedRose.items[0].quality).toEqual(quality + 3)
       });
     });
 
