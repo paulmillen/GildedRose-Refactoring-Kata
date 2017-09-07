@@ -11,27 +11,31 @@ describe('Shop', () => {
 
     describe('with common items', () => {
 
-      const sellIn = 1
-      const quality = 50
-      const item = new Item("common item", sellIn, quality)
-      const gildedRose = new Shop([item]);
-
       it('lowers its value by 1', () => {
+        const sellIn = 1
+        const quality = 50
+        const item = new Item("common item", sellIn, quality)
+        const gildedRose = new Shop([item]);
         gildedRose.updateQuality();
         expect(gildedRose.items[0].quality).toEqual(quality - 1)
       });
 
       it('quality degrades twice as much when sellIn is at 0', () => {
+        const sellIn = 0
+        const quality = 2
+        const item = new Item("common item", sellIn, quality)
+        const gildedRose = new Shop([item]);
         gildedRose.updateQuality();
-        expect(gildedRose.items[0].quality).toEqual(quality - 3)
+        expect(gildedRose.items[0].quality).toEqual(quality - 2)
       });
 
       it('does not lower its quality below 0', () => {
-        while (gildedRose.items[0].quality > 0) {
-          gildedRose.updateQuality();
-        };
+        const sellIn = 1
+        const quality = 0
+        const item = new Item("common item", sellIn, quality)
+        const gildedRose = new Shop([item]);
         gildedRose.updateQuality();
-        expect(gildedRose.items[0].quality).toEqual(0)
+        expect(gildedRose.items[0].quality).toEqual(quality)
       });
     });
 
