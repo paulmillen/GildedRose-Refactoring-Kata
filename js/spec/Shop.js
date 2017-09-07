@@ -109,6 +109,34 @@ describe('Shop', () => {
         gildedRose.updateQuality();
         expect(gildedRose.items[0].quality).toEqual(0)
       });
+
+      it('quality cannot drop below 0', () => {
+        const sellIn = 0
+        const quality = 10
+        const backstagePass = new Item("Backstage passes to a TAFKAL80ETC concert", sellIn, quality)
+        const gildedRose = new Shop([backstagePass]);
+        gildedRose.updateQuality();
+        gildedRose.updateQuality();
+        expect(gildedRose.items[0].quality).toEqual(0)
+      });
+    });
+
+    describe('Conjured Items', () => {
+
+      const sellIn = 1
+      const quality = 2
+      const conjuredItem = new Item("Conjured Staff", sellIn, quality)
+      const gildedRose = new Shop([conjuredItem]);
+
+      it('decreases quality by 2', () => {
+        gildedRose.updateQuality();
+        expect(gildedRose.items[0].quality).toEqual(quality - 2)
+      });
+
+      it('quality cannot decrease below 0', () => {
+        gildedRose.updateQuality();
+        expect(gildedRose.items[0].quality).toEqual(quality - 2)
+      });
     });
   });
 
