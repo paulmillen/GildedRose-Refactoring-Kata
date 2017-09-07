@@ -71,6 +71,45 @@ describe('Shop', () => {
         expect(gildedRose.items[0].sellIn).toEqual(sellIn)
       });
     });
+
+    describe('Backstage Passes', () => {
+
+      it('quality to increase by 1 with sell by over 10', () => {
+        const sellIn = 11
+        const quality = 10
+        const backstagePass = new Item("Backstage passes to a TAFKAL80ETC concert", sellIn, quality)
+        const gildedRose = new Shop([backstagePass]);
+        gildedRose.updateQuality();
+        expect(gildedRose.items[0].quality).toEqual(quality + 1)
+      });
+
+      it('quality to increase by 2', () => {
+        const sellIn = 6
+        const quality = 10
+        const backstagePass = new Item("Backstage passes to a TAFKAL80ETC concert", sellIn, quality)
+        const gildedRose = new Shop([backstagePass]);
+        gildedRose.updateQuality();
+        expect(gildedRose.items[0].quality).toEqual(quality + 2)
+      });
+
+      it('quality to increase by 3', () => {
+        const sellIn = 5
+        const quality = 10
+        const backstagePass = new Item("Backstage passes to a TAFKAL80ETC concert", sellIn, quality)
+        const gildedRose = new Shop([backstagePass]);
+        gildedRose.updateQuality();
+        expect(gildedRose.items[0].quality).toEqual(quality + 3)
+      });
+
+      it('quality drops to 0 when sellIn is at 0', () => {
+        const sellIn = 0
+        const quality = 10
+        const backstagePass = new Item("Backstage passes to a TAFKAL80ETC concert", sellIn, quality)
+        const gildedRose = new Shop([backstagePass]);
+        gildedRose.updateQuality();
+        expect(gildedRose.items[0].quality).toEqual(0)
+      });
+    });
   });
 
 });
