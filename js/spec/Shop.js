@@ -136,7 +136,7 @@ describe('Shop', () => {
     describe('with Conjured Items', () => {
 
       const sellIn = 1
-      const quality = 6
+      const quality = 7
       const conjuredItem = new Item("Conjured Staff", sellIn, quality)
       const gildedRose = new Shop([conjuredItem]);
 
@@ -152,7 +152,7 @@ describe('Shop', () => {
 
       it('quality cannot decrease below 0', () => {
         gildedRose.updateQuality();
-        expect(gildedRose.items[0].quality).toEqual(quality - 6)
+        expect(gildedRose.items[0].quality).toEqual(quality - 7)
       });
     });
   });
